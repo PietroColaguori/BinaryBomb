@@ -1,3 +1,5 @@
+## Binary Bomb - Challenge 6
+
 The first thing we notice is that the `challenge6` function passes to a subroutine two pointers, upon inspecting such subroutine we realise that it calls the `sscanf` C library function to read 6 space-separated integers from the input file. These six numbers (array of 6 integers) is saved in memory at the location `ebp-20h = ebp-32`, we will call this variable `sixNumbers`, I will refer to this variable also as `input` in IDA comments and in the pseudo source code later.
 
 Then a counter is initialized to 0 and compared to the value 6, if `i >= 6` then the program jumps to another location (out of the loop) otherwise the execution continues. If the execution continues, the `i`-th element of the input array is checked, if it is not in the set $[1,6]$ then the bomb explodes, otherwise the value of `i` is increased by 1 and a new counter is initialized to the value of `++i`.
